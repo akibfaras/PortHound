@@ -1,17 +1,32 @@
-name: Python Application
+name: PortHound Diagnostics
 
-on: [push]
+on:
+  workflow_dispatch:
+    inputs:
+      host:
+        description: "IP or DNS to run diagnostics on"
+        required: true
+        default: "8.8.8.8"
+      port:
+        description: "Port number to check (default 22)"
+        required: false
+        default: "22"
 
 jobs:
-  build:
+  diagnostics:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-    - name: Install dependencies
-      run: pip install -r requirements.txt
-    - name: Run CLI diagnostics (example)
-      run: python porthound.py 8.8.8.8
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run PortHound Diagnostics
+        run: |
+          python porthound.py --host ${{ github.event.inputs.host }} --port ${{ github.event.inputs.port }}
+

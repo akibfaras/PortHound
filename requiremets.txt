@@ -1,0 +1,10 @@
+# GUI
+tk
+
+# Networking utilities
+scapy
+python-nmap
+
+# Core utilities
+requests
+ipaddress

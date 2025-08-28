@@ -79,29 +79,7 @@ python port-hound.py invalid.host   # Invalid DNS
 
 ---
 
-## 📦 DevOps Style CI/CD (Optional)
 
-Add a GitHub Action to test your script automatically on pushes:
-
-```yaml
-name: Python Application
-
-on: [push]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-    - name: Install dependencies
-      run: pip install -r requirements.txt
-    - name: Run CLI diagnostics (example)
-      run: python port-hound.py 8.8.8.8
-```
 
 ---
 
